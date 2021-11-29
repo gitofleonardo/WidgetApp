@@ -2,4 +2,5 @@
     <string name="app_name">WidgetApp</string>
     <string name="layout_transition">Layout Transition</string>
     <string name="hello_world">Hello World</string>
+    <string name="success_view">Success View</string>
 </resources>

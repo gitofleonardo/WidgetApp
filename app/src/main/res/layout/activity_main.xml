@@ -17,5 +17,10 @@
             android:id="@+id/layout_transition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <Button
+            android:text="@string/success_view"
+            android:id="@+id/success_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

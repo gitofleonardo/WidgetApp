@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WidgetApp">
         <activity
+            android:name=".view.SuccessViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".anim.LayoutTransitionActivity"
             android:exported="false" />
         <activity
