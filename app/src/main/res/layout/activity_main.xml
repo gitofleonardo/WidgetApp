@@ -22,5 +22,20 @@
             android:id="@+id/success_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <Button
+            android:text="@string/animated_vector_drawable"
+            android:id="@+id/animated_drawable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/camera_image_view"
+            android:text="@string/camera_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/banner"
+            android:text="@string/banner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

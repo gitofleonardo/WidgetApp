@@ -25,7 +25,7 @@ class SuccessView(context:Context,attrs:AttributeSet?):View(context, attrs) {
     }
     private val mPath by lazy {
         Path().apply {
-            addCircle(120.0f,120.0f,100.0f,Path.Direction.CW)
+            addOval(RectF(20.0f,20.0f,200.0f,200.0f),Path.Direction.CW)
             val checkPath = Path().apply {
                 moveTo(65.0f,115.0f)
                 lineTo(115.0f,165.0f)
@@ -45,6 +45,10 @@ class SuccessView(context:Context,attrs:AttributeSet?):View(context, attrs) {
             color = Color.BLUE
             strokeWidth = 20.0f
             style = Paint.Style.STROKE
+            isAntiAlias = true
+            strokeCap = Paint.Cap.ROUND
+            pathEffect = CornerPathEffect(5.0f)
+            maskFilter = BlurMaskFilter(20.0f,BlurMaskFilter.Blur.INNER)
         }
     }
 
@@ -67,6 +71,6 @@ class SuccessView(context:Context,attrs:AttributeSet?):View(context, attrs) {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val width = MeasureSpec.makeMeasureSpec(240,MeasureSpec.EXACTLY)
         val height = MeasureSpec.makeMeasureSpec(240,MeasureSpec.EXACTLY)
-        super.onMeasure(width,height)
+        setMeasuredDimension(width,height)
     }
 }

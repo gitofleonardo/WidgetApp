@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WidgetApp">
         <activity
+            android:name=".view.TextBannerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".threed.CameraImageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".anim.AnimatorVectorActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.SuccessViewActivity"
             android:exported="false" />
         <activity

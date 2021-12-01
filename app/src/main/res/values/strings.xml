@@ -3,4 +3,7 @@
     <string name="layout_transition">Layout Transition</string>
     <string name="hello_world">Hello World</string>
     <string name="success_view">Success View</string>
+    <string name="animated_vector_drawable">Animated Vector Drawable</string>
+    <string name="camera_image_view">Camera Image View</string>
+    <string name="banner">Banner</string>
 </resources>

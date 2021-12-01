@@ -1,2 +1,5 @@
 <resources>
+    <declare-styleable name="ScrollBannerView">
+        <attr name="textSize" format="dimension"/>
+    </declare-styleable>
 </resources>
