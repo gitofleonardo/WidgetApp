@@ -37,5 +37,10 @@
             android:text="@string/banner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <Button
+            android:text="@string/nested_scroll"
+            android:id="@+id/nested_scroll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

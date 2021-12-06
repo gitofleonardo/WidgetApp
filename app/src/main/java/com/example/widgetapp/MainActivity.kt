@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.widgetapp.anim.AnimatorVectorActivity
 import com.example.widgetapp.anim.LayoutTransitionActivity
 import com.example.widgetapp.databinding.ActivityMainBinding
+import com.example.widgetapp.nestedscroll.NestedActivity
 import com.example.widgetapp.threed.CameraImageActivity
 import com.example.widgetapp.view.SuccessViewActivity
 import com.example.widgetapp.view.TextBannerActivity
@@ -29,6 +30,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
         binding.banner.setOnClickListener {
             val intent = Intent(this,TextBannerActivity::class.java)
+            startActivity(intent)
+        }
+        binding.nestedScroll.setOnClickListener {
+            val intent = Intent(this,NestedActivity::class.java)
             startActivity(intent)
         }
     }
