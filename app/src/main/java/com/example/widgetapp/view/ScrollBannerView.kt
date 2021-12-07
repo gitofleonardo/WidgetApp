@@ -20,7 +20,10 @@ import com.example.widgetapp.view.ScrollBannerView.Companion.scaledPx
 import java.lang.ref.WeakReference
 import java.util.*
 
-class ScrollBannerView(context: Context,attrs:AttributeSet? = null,defStyleAttr:Int = 0):FrameLayout(context, attrs, defStyleAttr),Callback {
+class ScrollBannerView(context: Context,attrs:AttributeSet?,defStyleAttr:Int) :FrameLayout(context, attrs, defStyleAttr), Callback {
+    constructor(context: Context,attrs: AttributeSet?):this(context,attrs,-1)
+    constructor(context: Context):this(context,null)
+
     private var mCurrentTextView:TextView? = null
     private var mCurrentDisplayTextIndex = 0
     private var mTextList = mutableListOf<String>()
