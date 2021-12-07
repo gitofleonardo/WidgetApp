@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Scroller
 import androidx.core.view.NestedScrollingParent
+import androidx.core.view.NestedScrollingParent3
 import androidx.core.view.NestedScrollingParentHelper
 import androidx.core.view.children
 import kotlin.math.abs
 import kotlin.math.min
 
-class RefreshView(context: Context,attrs:AttributeSet?) : ViewGroup(context, attrs), NestedScrollingParent {
+class RefreshView(context: Context,attrs:AttributeSet?) : ViewGroup(context, attrs), NestedScrollingParent3 {
     constructor(context: Context):this(context,null)
     private val TAG = "RefreshView"
     private val mHelper = NestedScrollingParentHelper(this)
@@ -67,16 +68,16 @@ class RefreshView(context: Context,attrs:AttributeSet?) : ViewGroup(context, att
         }
     }
 
-    override fun onStartNestedScroll(child: View, target: View, axes: Int): Boolean {
+    override fun onStartNestedScroll(child: View, target: View, axes: Int, type: Int): Boolean {
         mScroller.forceFinished(true)
         return true
     }
 
-    override fun onNestedScrollAccepted(child: View, target: View, axes: Int) {
+    override fun onNestedScrollAccepted(child: View, target: View, axes: Int, type: Int) {
         mHelper.onNestedScrollAccepted(child, target, axes)
     }
 
-    override fun onStopNestedScroll(target: View) {
+    override fun onStopNestedScroll(target: View, type: Int) {
         if (abs(mOffset) < mHeaderHeight * 2 / 3){
             mScroller.forceFinished(true)
             mScroller.startScroll(0, abs(mOffset),0,-abs(mOffset))
@@ -92,7 +93,9 @@ class RefreshView(context: Context,attrs:AttributeSet?) : ViewGroup(context, att
         dxConsumed: Int,
         dyConsumed: Int,
         dxUnconsumed: Int,
-        dyUnconsumed: Int
+        dyUnconsumed: Int,
+        type: Int,
+        consumed: IntArray
     ) {
         var shouldScroll = 0
         if (dyUnconsumed < 0) {
@@ -100,7 +103,28 @@ class RefreshView(context: Context,attrs:AttributeSet?) : ViewGroup(context, att
             if (abs(mOffset) >= mHeaderHeight) {
                 shouldScroll = reduce(shouldScroll)
             }
-            Log.e(TAG,"Should scroll:${shouldScroll}")
+        }
+        shouldScroll = reduce(shouldScroll)
+        mOffset += shouldScroll
+        consumed[1] = shouldScroll
+        contentTranslationBy(0,shouldScroll)
+        updateProgress()
+    }
+
+    override fun onNestedScroll(
+        target: View,
+        dxConsumed: Int,
+        dyConsumed: Int,
+        dxUnconsumed: Int,
+        dyUnconsumed: Int,
+        type: Int
+    ) {
+        var shouldScroll = 0
+        if (dyUnconsumed < 0) {
+            shouldScroll = -min(abs(dyUnconsumed), abs(mHeaderHeight - abs(mOffset)))
+            if (abs(mOffset) >= mHeaderHeight) {
+                shouldScroll = reduce(shouldScroll)
+            }
         }
         shouldScroll = reduce(shouldScroll)
         mOffset += shouldScroll
@@ -108,7 +132,7 @@ class RefreshView(context: Context,attrs:AttributeSet?) : ViewGroup(context, att
         updateProgress()
     }
 
-    override fun onNestedPreScroll(target: View, dx: Int, dy: Int, consumed: IntArray) {
+    override fun onNestedPreScroll(target: View, dx: Int, dy: Int, consumed: IntArray, type: Int) {
         if (mIsRefreshing){
             return
         }
@@ -136,7 +160,8 @@ class RefreshView(context: Context,attrs:AttributeSet?) : ViewGroup(context, att
         if (mIsRefreshing){
             return false
         }
-        if (velocityY > 0){
+        if (velocityY < 0){
+            Log.e(TAG,"Fling, v:${velocityY}")
             mScroller.fling(0, abs(mOffset),0,-velocityY.toInt(),0,0,0,mHeaderHeight)
             invalidate()
             return true
@@ -159,6 +184,7 @@ class RefreshView(context: Context,attrs:AttributeSet?) : ViewGroup(context, att
     override fun computeScroll() {
         if (mScroller.computeScrollOffset()){
             val shouldScroll = mScroller.currY
+            Log.e(TAG,"currY:${mScroller.currY}")
             contentTranslationBy(0, abs(mOffset) - shouldScroll)
             mOffset = -shouldScroll
             invalidate()
@@ -171,6 +197,7 @@ class RefreshView(context: Context,attrs:AttributeSet?) : ViewGroup(context, att
     }
 
     private fun contentTranslationBy(x:Int,y:Int){
+        Log.e(TAG,"Content translation:${y}")
         mContentView.top += -y
     }
 
