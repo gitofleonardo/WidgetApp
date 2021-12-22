@@ -7,4 +7,5 @@
     <string name="camera_image_view">Camera Image View</string>
     <string name="banner">Banner</string>
     <string name="nested_scroll">Nested Scroll</string>
+    <string name="canvas">Canvas</string>
 </resources>
