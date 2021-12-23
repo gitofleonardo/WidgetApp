@@ -30,6 +30,8 @@ class CanvasView(context:Context,attrs:AttributeSet?) : View(context, attrs) {
     private var mPrevX = 0.0f
     private var mPrevY = 0.0f
     private var mShouldNextQuad = false
+    private val mMatrix = Matrix()
+    private val mCamera = Camera()
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val path = when (canvasMode) {
@@ -73,6 +75,9 @@ class CanvasView(context:Context,attrs:AttributeSet?) : View(context, attrs) {
     }
 
     override fun onDraw(canvas: Canvas) {
+        mMatrix.reset()
+        mMatrix.preTranslate(0.1f,0.0f)
+        canvas.setMatrix(mMatrix)
         canvas.drawPath(mPath,mPaint)
         if (canvasMode == CanvasMode.CLEAR){
             canvas.drawPath(mClearPath,mClearPathPaint)

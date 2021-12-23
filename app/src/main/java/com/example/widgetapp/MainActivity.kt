@@ -5,7 +5,9 @@ import android.os.Bundle
 import com.example.widgetapp.anim.AnimatorVectorActivity
 import com.example.widgetapp.anim.LayoutTransitionActivity
 import com.example.widgetapp.databinding.ActivityMainBinding
+import com.example.widgetapp.draw.BlurImageActivity
 import com.example.widgetapp.draw.CanvasActivity
+import com.example.widgetapp.draw.CircleImageViewActivity
 import com.example.widgetapp.nestedscroll.NestedActivity
 import com.example.widgetapp.threed.CameraImageActivity
 import com.example.widgetapp.view.SuccessViewActivity
@@ -39,6 +41,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
         binding.canvas.setOnClickListener {
             val intent = Intent(this,CanvasActivity::class.java)
+            startActivity(intent)
+        }
+        binding.circleImage.setOnClickListener {
+            val intent = Intent(this,CircleImageViewActivity::class.java)
+            startActivity(intent)
+        }
+        binding.blurImage.setOnClickListener {
+            val intent = Intent(this,BlurImageActivity::class.java)
             startActivity(intent)
         }
     }

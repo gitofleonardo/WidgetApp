@@ -9,4 +9,6 @@
     <string name="nested_scroll">Nested Scroll</string>
     <string name="canvas">Canvas</string>
     <string name="clear">Clear</string>
+    <string name="circle_image">CircleImage</string>
+    <string name="blur_image">BlurImage</string>
 </resources>

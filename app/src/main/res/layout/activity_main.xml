@@ -47,5 +47,15 @@
             android:id="@+id/canvas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <Button
+            android:text="@string/circle_image"
+            android:id="@+id/circle_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:text="@string/blur_image"
+            android:id="@+id/blur_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
